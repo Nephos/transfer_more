@@ -20,6 +20,7 @@ crystal build # build the app
 
 ### Server
 ```sh
+export TRANSFER_BASE_URL="https://domain.com"
 ./transfer_more
 ```
 
