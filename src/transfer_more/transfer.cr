@@ -22,7 +22,7 @@ put "/:file_name" do |env|
   dir_part1 = Time.now.to_s("%Y%m%d%H%M")
   dir_part2 = SecureRandom.urlsafe_base64(8, true)
 
-  # Todo recursive -p and use basename on file_name
+  # TODO recursive -p and use basename on file_name
   Dir.mkdir(dir_part0) rescue puts("cannot make 0")
   Dir.mkdir(dir_part0 + "/" + dir_part1) rescue puts("cannot make 1")
   Dir.mkdir(dir_part0 + "/" + dir_part1 + "/" + dir_part2) rescue puts("cannot make 2")
@@ -31,8 +31,7 @@ put "/:file_name" do |env|
   file_path = dir_part0 + "/" + path
 
   File.write(file_path, env.request.body)
-  puts env.request.host
-  (env.request.scheme || "http") + "://" + env.request.headers["Host"] + "/" + path + "\n"
+  ENV["TRANSFER_BASE_URL"] + "/" + path + "\n"
 end
 
 get "/:part1/:part2/:file_name" do |env|
@@ -40,4 +39,8 @@ get "/:part1/:part2/:file_name" do |env|
   content_type = get_content_type(extension: file_name.split(".").last)
   env.response.content_type = content_type
   File.read("/tmp/files/" + env.params.url["part1"] + "/" + env.params.url["part2"] + "/" + file_name)
+end
+
+get "/" do |env|
+  File.read("index.html")
 end
