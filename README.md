@@ -18,9 +18,16 @@ crystal build # build the app
 
 ## Usage
 
+### Server
 ```sh
-./transfer_more # run the server
+./transfer_more
 ```
+
+### Client
+```sh
+curl --progress-bar --upload-file file.mp4  http://domain/name.mp4
+```
+
 
 ## Development
 
@@ -28,7 +35,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/pouleta/transfer_more/fork )
+1. Fork it ( https://github.com/Nephos/transfer_more/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -36,4 +43,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [pouleta](https://github.com/pouleta) Arthur Poulet - creator, maintainer
+- [Nephos](https://github.com/Nephos) Arthur Poulet - creator, maintainer
