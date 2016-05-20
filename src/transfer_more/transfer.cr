@@ -16,7 +16,7 @@ def get_content_type(extension : String) : String
 end
 
 put "/:file_name" do |env|
-  file_name = env.params.url["file_name"]
+  file_name = env.params.url["file_name"].downcase
   dir_part0 = "/tmp/files"
   dir_part1 = Time.now.to_s(TransferMore::TIME_FORMAT)
   dir_part2 = SecureRandom.hex(4)
@@ -31,7 +31,7 @@ put "/:file_name" do |env|
 end
 
 get "/:part1/:part2/:file_name" do |env|
-  file_name = env.params.url["file_name"]
+  file_name = env.params.url["file_name"].downcase
   content_type = get_content_type(extension: file_name.split(".").last)
   env.response.content_type = content_type
   File.read("/tmp/files/" + env.params.url["part1"] + "/" + env.params.url["part2"] + "/" + file_name)
