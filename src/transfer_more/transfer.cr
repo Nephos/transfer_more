@@ -21,9 +21,10 @@ MAGIC_NUMBERS = {
   [0x25, 0x50, 0x44, 0x46] => "application/pdf",
 }
 def get_content_type(file : String) : String
-  get_mime_from_magic_number(file) ||
-  get_mime_from_extname(File.extname(file)) ||
-  "application/bin"
+  mime = get_mime_from_magic_number(file)
+  mime ||= get_mime_from_extname(File.extname(file).delete("."))
+  mime ||= "application/bin"
+  mime
 end
 
 def get_mime_from_extname(extname : String) : String?
@@ -31,7 +32,7 @@ def get_mime_from_extname(extname : String) : String?
   replaced = EXT_TRANSFORM.select{|k,v| k.includes? extname}.first[1] rescue nil
   extname = replaced if replaced
   mime = EXT.select{|k,v| v.includes? extname}.first rescue nil
-  mime && "#{mime[0]}/#{mime[1]}"
+  mime && "#{mime[0]}/#{extname}"
 end
 
 def get_mime_from_magic_number(file : String) : String?
@@ -47,17 +48,15 @@ end
 
 put "/:file_name" do |env|
   file_name = env.params.url["file_name"].downcase
-  dir_part0 = "/tmp/files"
-  dir_part1 = Time.now.to_s(TransferMore::TIME_FORMAT)
-  dir_part2 = SecureRandom.hex(4)
+  dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + SecureRandom.hex(4)
 
-  Dir.mkdir_p(dir_part0 + "/" + dir_part1 + "/" + dir_part2)
+  Dir.mkdir_p("/tmp/files/#{dir}")
 
-  path = dir_part1 + "/" + dir_part2 + "/" + file_name
-  file_path = dir_part0 + "/" + path
+  visible_path = "#{dir}/#{file_name}"
+  file_path = "/tmp/files/#{visible_path}"
 
   File.write(file_path, env.request.body)
-  ENV["TRANSFER_BASE_URL"] + "/" + path + "\n"
+  ENV["TRANSFER_BASE_URL"] + "/" + visible_path + "\n"
 end
 
 get "/:part1/:part2/:file_name" do |env|
