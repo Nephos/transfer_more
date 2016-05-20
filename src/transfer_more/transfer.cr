@@ -19,13 +19,10 @@ end
 put "/:file_name" do |env|
   file_name = env.params.url["file_name"]
   dir_part0 = "/tmp/files"
-  dir_part1 = Time.now.to_s("%Y%m%d%H%M")
+  dir_part1 = Time.now.to_s(TransferMore::TIME_FORMAT)
   dir_part2 = SecureRandom.hex(4)
 
-  # TODO recursive -p and use basename on file_name
-  Dir.mkdir(dir_part0) rescue puts("cannot make 0")
-  Dir.mkdir(dir_part0 + "/" + dir_part1) rescue puts("cannot make 1")
-  Dir.mkdir(dir_part0 + "/" + dir_part1 + "/" + dir_part2) rescue puts("cannot make 2")
+  Dir.mkdir_p(dir_part0 + "/" + dir_part1 + "/" + dir_part2)
 
   path = dir_part1 + "/" + dir_part2 + "/" + file_name
   file_path = dir_part0 + "/" + path
