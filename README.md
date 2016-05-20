@@ -9,9 +9,10 @@ The project status will be updated later when details will be fixed.
 ## Installation
 
 ```sh
-shards # install the libs
-crystal spec # run unit test
-crystal build # build the app
+make deps
+make        # build the app
+make test   # run unit test
+make doc    # build the documentation
 ```
 
 
