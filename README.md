@@ -2,10 +2,6 @@
 
 transfer.sh clone in Crystal-lang
 
-# Work In Progress
-The project will not works on your computer, because some libs are customized dirty.
-The project status will be updated later when details will be fixed.
-
 ## Installation
 
 ```sh
