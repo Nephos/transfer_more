@@ -15,7 +15,7 @@
     <h6><a href="https://github.com/Nephos/transfer_more">Fork me <span class="mega-octicon octicon-mark-github" /></a></h6>
     <p>
       <code>
-        curl --progress-bar --upload-file file.ext  https://up.nephos.xyz/file.ext
+        curl --progress-bar --upload-file file.ext  <%= ENV["TRANSFER_BASE_URL"] %>/file.ext
       </code>
     </p>
     <img src="__kemal__/404.png">
