@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>upload with kemal</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="//octicons.github.com/components/octicons/octicons/octicons.css">
   <style type="text/css">
-    body { text-align:center;font-family:helvetica,arial;font-size:22px;color:#888;margin:20px}
-    a { color:#888;text-decoration:none; }
-    #c {margin:0 auto;width:500px;text-align:left}
+  body { text-align:center;font-family:helvetica,arial;font-size:22px;color:#888;margin:20px;}
+  a { color:#666;text-decoration:none;}
+  #c {margin:0 auto;width:500px;text-align:left}
   </style>
-  </head>
+</head>
 
-  <body>
-    <h2>transfer.sh like.</h2>
-    <h6><a href="https://github.com/Nephos/transfer_more">Fork me <span class="mega-octicon octicon-mark-github" /></a></h6>
-    <p>
-      <code>
-        curl --progress-bar --upload-file file.ext  <%= ENV["TRANSFER_BASE_URL"] %>/file.ext
-      </code>
-    </p>
-    <img src="__kemal__/404.png">
+<body>
+  <h2>transfer.sh with kemal</h2>
+  <p>
+    <code>
+      curl --progress-bar --upload-file file.ext  <%= ENV["TRANSFER_BASE_URL"] %>/file.ext
+    </code>
+  </p>
+  <img src="__kemal__/404.png">
 
-  </body>
+  <footer style="position:fixed;bottom:0px;padding:60px;">
+    <span style="position:fixed;left:10%">
+      built by <a href="https://github.com/Nephos/">Nephos</a> with <a href="http://kemalcr.com/">kemal</a>
+    </span>
+    <span style="position:fixed;right:10%">
+      <a href="https://github.com/Nephos/transfer_more">Fork me <span class="mega-octicon octicon-mark-github" /></a>
+    </span>
+  </footer>
+</body>
 </html>
