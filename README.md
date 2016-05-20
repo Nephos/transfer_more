@@ -9,7 +9,6 @@ The project status will be updated later when details will be fixed.
 ## Installation
 
 ```sh
-make deps
 make        # build the app
 make test   # run unit test
 make doc    # build the documentation
@@ -21,8 +20,7 @@ make doc    # build the documentation
 
 ### Server
 ```sh
-export TRANSFER_BASE_URL="https://domain.com"
-./transfer_more
+TRANSFER_BASE_URL="https://domain.com:80" ./transfer_more
 ```
 
 ### Client
