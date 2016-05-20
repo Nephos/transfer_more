@@ -20,7 +20,7 @@ put "/:file_name" do |env|
   file_name = env.params.url["file_name"]
   dir_part0 = "/tmp/files"
   dir_part1 = Time.now.to_s("%Y%m%d%H%M")
-  dir_part2 = SecureRandom.urlsafe_base64(8, true)
+  dir_part2 = SecureRandom.hex(4)
 
   # TODO recursive -p and use basename on file_name
   Dir.mkdir(dir_part0) rescue puts("cannot make 0")
