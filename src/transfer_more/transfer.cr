@@ -42,5 +42,5 @@ get "/:part1/:part2/:file_name" do |env|
 end
 
 get "/" do |env|
-  File.read("index.html")
+  render "src/views/index.ecr"
 end
