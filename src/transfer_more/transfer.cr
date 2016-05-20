@@ -12,7 +12,6 @@ EXT = {
 }
 def get_content_type(extension : String) : String
   extension = TRANSFORM[extension]? || extension
-  puts extension
   EXT.select{|k,v| v.includes? extension}.first[0] + "/#{extension}" rescue "application/bin"
 end
 
