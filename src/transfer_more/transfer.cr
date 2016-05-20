@@ -1,7 +1,7 @@
 require "secure_random"
 
 TRANSFORM = {
-  "jpg" => "jpeg",
+  %w(jpg jpe) => "jpeg",
 }
 EXT = {
   "image" => %w(png jpeg gif tiff),
@@ -11,7 +11,7 @@ EXT = {
   "video" => %w(mpeg mp4 webm),
 }
 def get_content_type(extension : String) : String
-  extension = TRANSFORM[extension]? || extension
+  extension = TRANSFORM.select{|k,v| k.includes? extension}.first[1] rescue extension
   EXT.select{|k,v| v.includes? extension}.first[0] + "/#{extension}" rescue "application/bin"
 end
 
