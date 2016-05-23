@@ -2,6 +2,8 @@
 
 transfer.sh clone in Crystal-lang
 
+# Multi-part is not supported yet (so big files may not pass)
+
 ## Installation
 
 ```sh
