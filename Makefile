@@ -1,10 +1,10 @@
-all : build
+all: build
 
 build: deps_opt
-	crystal build src/transfer_more.cr
+	crystal compile -s src/transfer_more.cr
 
 release: deps_opt
-	crystal build --release src/transfer_more.cr
+	crystal compile -s --release src/transfer_more.cr
 
 deps:
 	shards install
