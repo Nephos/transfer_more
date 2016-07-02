@@ -1,5 +1,4 @@
 module TransferMore
-
   def self.purge(duration)
     tFrom = (Time.now - duration).epoch
     puts "[PURGE]  Start (#{tFrom})"
@@ -26,7 +25,6 @@ module TransferMore
     end
     Dir.rmdir("/tmp/files/#{dir}")
   end
-
 end
 
 spawn do
