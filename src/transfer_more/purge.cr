@@ -1,3 +1,4 @@
+# coding: utf-8
 module TransferMore
   def self.purge(duration)
     tFrom = (Time.now - duration).epoch
@@ -30,7 +31,7 @@ end
 spawn do
   loop do
     begin
-      TransferMore.purge(60.seconds)
+      TransferMore.purge(7.days)
     rescue err
       STDERR.puts "Purge: #{err}"
     end
