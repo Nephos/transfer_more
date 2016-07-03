@@ -18,7 +18,9 @@ make doc    # build the documentation
 
 ### Server
 ```sh
-TRANSFER_BASE_URL="https://domain.com:80" ./transfer_more
+export TRANSFER_BASE_URL="https://domain.com:80"
+export TRANSFER_BASE_STORAGE="/tmp"
+./transfer_more
 ```
 
 Files older than 7 days are destroyed.
