@@ -33,7 +33,7 @@ spawn do
     begin
       TransferMore.purge(7.days)
     rescue err
-      STDERR.puts "Purge: #{err}"
+      STDERR.puts "Purge: #{err}"
     end
     sleep(60)
   end
