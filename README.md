@@ -4,7 +4,7 @@ transfer.sh clone in Crystal-lang
 
 # Multi-part is not supported yet (so big files may not pass)
 
-## Installation
+## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
 
 ```sh
 make        # build the app
