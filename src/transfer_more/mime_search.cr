@@ -9,8 +9,8 @@ module TransferMore
     end
 
     EXT_TRANSFORM = {
-      %w(jpg jpe) => "jpeg",
-      %w(txt)     => "plain",
+      %w(jpg jpe)     => "jpeg",
+      %w(txt text md) => "plain",
     }
 
     EXT = {
