@@ -9,7 +9,12 @@ put "/:file_name" do |env|
   visible_path = "#{dir}/#{file_name}"
   file_path = TransferMore.storage "files/#{visible_path}"
 
-  File.write(file_path, env.request.body)
+  # TODO: when kemal will, use env.files["upload"]
+  parse_multipart(env) do |field, data|
+    File.write(file_path, data)
+    break # only one file upload
+  end rescue File.write(file_path, env.request.body)
+
   TransferMore::BASE_URL + "/" + visible_path + "\n"
 end
 

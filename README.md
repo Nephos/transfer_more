@@ -1,12 +1,11 @@
 # transfer_more
 
-transfer.sh clone in Crystal-lang
-
-# Multi-part is not supported yet (so big files may not pass)
+transfer.sh clone in Crystal-lang based on kemalcr
 
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
 
 ```sh
+make install # install the deps
 make        # build the app
 make test   # run unit test
 make doc    # build the documentation
