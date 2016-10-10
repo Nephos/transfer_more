@@ -16,7 +16,7 @@ ADD . /transfer_more
 WORKDIR /transfer_more
 
 # Install dependencies
-RUN shards install update
+RUN shards install
 
 # Build our app
 RUN crystal compile --release src/transfer_more.cr
