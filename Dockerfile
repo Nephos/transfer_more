@@ -19,7 +19,7 @@ WORKDIR /transfer_more
 RUN shards install
 
 # Build our app
-RUN crystal compile --release src/transfer_more.cr
+RUN crystal build --release src/transfer_more.cr
 
 # Run the tests
 RUN mkdir /tmp/files
