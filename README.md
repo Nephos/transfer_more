@@ -31,17 +31,25 @@ export TRANSFER_BASE_STORAGE="/tmp"
 ./transfer_more --help
     -b HOST, --bind HOST             Host to bind (defaults to 0.0.0.0)
     -p PORT, --port PORT             Port to listen for connections (defaults to 3000)
-    -e ENV, --environment ENV        Environment [development, production] (defaults to development). Set `production` to boost performance
-    -s, --ssl                        Enables SSL
-    --ssl-key-file FILE              SSL key file
-    --ssl-cert-file FILE             SSL certificate file
-    -h, --help                       Shows this help
 ```
 
 ### Command line client
 
 ```sh
 curl --progress-bar --upload-file file.mp4  http://domain/name.mp4
+```
+
+
+### Inside a docker
+
+If you are using docker-compose:
+```sh
+docker-compose build && docker-compose up
+```
+
+Else, you can do:
+```sh
+docker build -t transfer_more . && docker run transfer_more
 ```
 
 
