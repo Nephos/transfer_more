@@ -1,6 +1,10 @@
 # transfer_more
 
-transfer.sh clone in Crystal-lang based on kemalcr
+[transfer.sh](https://transfer.sh/) clone in Crystal-lang based on kemalcr.
+
+- It's a simple online file sharing.
+- Files older than 7 days are destroyed.
+
 
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
 
@@ -12,17 +16,16 @@ make doc    # build the documentation
 ```
 
 
-
 ## Usage
 
-### Server
+### Run the Server
+
 ```sh
 export TRANSFER_BASE_URL="https://domain.com:80"
 export TRANSFER_BASE_STORAGE="/tmp"
 ./transfer_more
 ```
 
-Files older than 7 days are destroyed.
 
 ```text
 ./transfer_more --help
@@ -35,7 +38,8 @@ Files older than 7 days are destroyed.
     -h, --help                       Shows this help
 ```
 
-### Client
+### Command line client
+
 ```sh
 curl --progress-bar --upload-file file.mp4  http://domain/name.mp4
 ```

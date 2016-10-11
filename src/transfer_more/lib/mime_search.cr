@@ -1,8 +1,7 @@
 module TransferMore
   class MimeSearch
-    @file : String
-    @extname : String
-    getter file, extname
+    getter file : String
+    getter extname : String
 
     def initialize(@file)
       @extname = File.extname(file).delete(".")

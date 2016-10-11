@@ -1,4 +1,6 @@
 all: build
+run:
+	@crystal run src/transfer_more.cr
 build: deps_opt
 	@crystal build -s src/transfer_more.cr
 release: deps_opt
