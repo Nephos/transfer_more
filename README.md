@@ -9,8 +9,7 @@
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
 
 ```sh
-make install # install the deps
-make        # build the app
+make        # build the app / deps
 make test   # run unit test
 make doc    # build the documentation
 ```
