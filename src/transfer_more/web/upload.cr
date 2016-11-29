@@ -12,11 +12,13 @@ put "/:file_name" do |env|
   # TODO: when kemal will, use env.files["upload"]
   begin
     parse_multipart(env) do |f|
-      File.write(file_path, f.data)
+      while read = f.data.gets(65536)
+        File.write(file_path, read)
+      end
       break # only one file upload
     end
   rescue err
-    File.write(file_path, env.request.body)
+    File.write(file_path, env.request.body.as(IO).gets_to_end)
   end
 
   TransferMore::BASE_URL + "/" + visible_path + "\n"
