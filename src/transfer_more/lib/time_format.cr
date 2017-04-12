@@ -1,3 +1,3 @@
 module TransferMore
-  TIME_FORMAT = "%Y%m%d%H%M"
+  TIME_FORMAT = "%y%m%d%H"
 end
