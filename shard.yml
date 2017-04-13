@@ -4,7 +4,7 @@ version: 0.2.1
 authors:
   - Arthur Poulet <arthur.poulet@mailoo.org>
 
-license: MIT
+license: GPL-3.0
 
 dependencies:
   kemal:
