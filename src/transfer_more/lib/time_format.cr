@@ -1,3 +1,3 @@
 module TransferMore
-  TIME_FORMAT = "%y%m%d%H"
+  TIME_FORMAT = ENV["TRANSFER_TIME_FORMAT"]? || "%y%m%d%H"
 end

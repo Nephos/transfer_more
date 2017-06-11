@@ -3,7 +3,8 @@
 [transfer.sh](https://transfer.sh/) clone in Crystal-lang based on kemalcr.
 
 - It's a simple online file sharing.
-- Files older than 7 days are destroyed.
+- Files older than 7 days are destroyed (configurable).
+- Recognize shebangs, magic numbers, ...
 
 
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
@@ -21,7 +22,10 @@ make doc    # build the documentation
 
 ```sh
 export TRANSFER_BASE_URL="https://domain.com:80"
-export TRANSFER_BASE_STORAGE="/tmp"
+export TRANSFER_BASE_STORAGE="/tmp" # where the files will be kept
+export TRANSFER_SECURE_SIZE=4       # how much characters to identify a file
+export TRANSFER_STORRAGE_DAYS=7     # how much time the files are kept
+export TRANSFER_TIME_FORMAT="%y%m%d%H"
 ./transfer_more
 ```
 

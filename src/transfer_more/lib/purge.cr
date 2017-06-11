@@ -32,7 +32,7 @@ end
 spawn do
   loop do
     begin
-      TransferMore.purge(7.days)
+      TransferMore.purge(TransferMore::STORAGE_DAYS.days)
     rescue err
       STDERR.puts "Purge: #{err}"
     end
