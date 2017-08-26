@@ -14,7 +14,7 @@ module TransferMore
 
     EXT = {
       "image"       => %w(png jpeg gif tiff),
-      "text"        => %(css html csv plain),
+      "text"        => %(css html csv plain txt patch md),
       "application" => %w(javascript json pdf xml zip),
       "audio"       => %w(mpeg ogg),
       "video"       => %w(mpeg mp4 webm),
