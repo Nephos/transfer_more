@@ -20,6 +20,7 @@ put "/:file_name" do |env|
   begin
     upload(env.params.url["file_name"], env.request.body.as(IO)) + "\n"
   rescue err
+    env.response.status_code = 500
     "Error 500"
   end
 end
@@ -30,6 +31,7 @@ post "/:file_name" do |env|
     _, http_file_infos = env.params.files.first
     upload(env.params.url["file_name"], http_file_infos.tmpfile) + "\n"
   rescue err
+    env.response.status_code = 500
     "Error 500"
   end
 end
@@ -40,6 +42,7 @@ post "/" do |env|
     _, http_file_infos = env.params.files.first
     env.redirect upload(http_file_infos.filename.to_s, http_file_infos.tmpfile)
   rescue err
+    env.response.status_code = 500
     "Error 500"
   end
 end
