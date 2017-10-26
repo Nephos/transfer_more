@@ -2,7 +2,7 @@
 
 [transfer.sh](https://transfer.sh/) clone in Crystal-lang based on kemalcr.
 
-![screenshot_20171026_132102](https://user-images.githubusercontent.com/979584/32050320-a1ea9c9c-ba50-11e7-996b-f4fa60c74ae2.png)
+![screenshot](https://screenshots.firefoxusercontent.com/images/191ebbd9-a5ea-4fe9-ab8c-d896f59ea08c.png)
 
 - It's a simple online file sharing.
 - Files older than 7 days are destroyed (configurable).
