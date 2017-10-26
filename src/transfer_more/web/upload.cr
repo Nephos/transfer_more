@@ -9,16 +9,16 @@ private def get_upload_infos(filename : String)
   {file_name, dir, visible_path, file_path}
 end
 
-private def upload(name_of_upload, io_to_copy)
+private def upload(env, name_of_upload, io_to_copy)
   file_name, dir, visible_path, file_path = get_upload_infos name_of_upload
   File.open(file_path, "w") { |f| IO.copy(io_to_copy, f) }
-  TransferMore::BASE_URL + "/" + visible_path
+  TransferMore.base_url(env) + "/" + visible_path
 end
 
 # Fast
 put "/:file_name" do |env|
   begin
-    upload(env.params.url["file_name"], env.request.body.as(IO)) + "\n"
+    upload(env, env.params.url["file_name"], env.request.body.as(IO)) + "\n"
   rescue err
     env.response.status_code = 500
     "Error 500"
@@ -29,7 +29,7 @@ end
 post "/:file_name" do |env|
   begin
     _, http_file_infos = env.params.files.first
-    upload(env.params.url["file_name"], http_file_infos.tmpfile) + "\n"
+    upload(env, env.params.url["file_name"], http_file_infos.tmpfile) + "\n"
   rescue err
     env.response.status_code = 500
     "Error 500"
@@ -40,7 +40,7 @@ end
 post "/" do |env|
   begin
     _, http_file_infos = env.params.files.first
-    env.redirect upload(http_file_infos.filename.to_s, http_file_infos.tmpfile)
+    env.redirect upload(env, http_file_infos.filename.to_s, http_file_infos.tmpfile)
   rescue err
     env.response.status_code = 500
     "Error 500"
