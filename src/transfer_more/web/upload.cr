@@ -1,6 +1,6 @@
 require "secure_random"
 
-def get_upload_infos(filename : String)
+private def get_upload_infos(filename : String)
   file_name = filename.downcase
   dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + SecureRandom.hex(TransferMore::SECURE_SIZE)
   Dir.mkdir_p(TransferMore.storage "files/#{dir}")
@@ -9,33 +9,43 @@ def get_upload_infos(filename : String)
   {file_name, dir, visible_path, file_path}
 end
 
-# # TODO: handle multi upload
+private def upload(name_of_upload, io_to_copy)
+  file_name, dir, visible_path, file_path = get_upload_infos name_of_upload
+  File.open(file_path, "w") { |f| IO.copy(io_to_copy, f) }
+  TransferMore::BASE_URL + "/" + visible_path
+end
 
 # Fast
 put "/:file_name" do |env|
-  file_name, dir, visible_path, file_path = get_upload_infos env.params.url["file_name"]
-  File.open(file_path, "w") { |f| IO.copy(env.request.body.as(IO), f) }
-  TransferMore::BASE_URL + "/" + visible_path + "\n"
+  begin
+    upload(env.params.url["file_name"], env.request.body.as(IO)) + "\n"
+  rescue err
+    "Error 500"
+  end
 end
 
 # Slow
 post "/:file_name" do |env|
-  _, http_file_infos = env.params.files.first
-  file_name, dir, visible_path, file_path = get_upload_infos env.params.url["file_name"]
-  File.open(file_path, "w") { |f| IO.copy(http_file_infos.tmpfile, f) }
-  TransferMore::BASE_URL + "/" + visible_path + "\n"
+  begin
+    _, http_file_infos = env.params.files.first
+    upload(env.params.url["file_name"], http_file_infos.tmpfile) + "\n"
+  rescue err
+    "Error 500"
+  end
 end
 
 # Web upload
 post "/" do |env|
-  _, http_file_infos = env.params.files.first
-  file_name, dir, visible_path, file_path = get_upload_infos http_file_infos.filename.to_s
-  File.open(file_path, "w") { |f| IO.copy(http_file_infos.tmpfile, f) }
-  env.redirect TransferMore::BASE_URL + "/" + visible_path
+  begin
+    _, http_file_infos = env.params.files.first
+    env.redirect upload(http_file_infos.filename.to_s, http_file_infos.tmpfile)
+  rescue err
+    "Error 500"
+  end
 end
 
 get "/:part1/:part2/:file_name" do |env|
-  file_name = env.params.url["file_name"].downcase
+  file_name = env.params.url["file_name"].to_s.downcase
   path = TransferMore.storage("files") + "/" + env.params.url["part1"] + "/" + env.params.url["part2"] + "/" + file_name
   begin
     content_type = TransferMore::MimeSearch.new(path).get_content_type
