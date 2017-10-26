@@ -23,6 +23,7 @@ make doc    # build the documentation
 ### Run the Server
 
 ```sh
+export TRANSFER_SSL_ENABLED=true    # true if the ssl is enabled, any other string is false
 export TRANSFER_BASE_STORAGE="/tmp" # where the files will be kept
 export TRANSFER_SECURE_SIZE=4       # how much characters to identify a file
 export TRANSFER_STORRAGE_DAYS=7     # how much time the files are kept
