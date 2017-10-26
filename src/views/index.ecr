@@ -17,7 +17,7 @@
   <h2>transfer.sh with kemal</h2>
   <p>
     <code>
-      curl --progress-bar --upload-file file.ext  <%= TransferMore::BASE_URL %>/file.ext
+      curl --progress-bar --upload-file file.ext  <%= TransferMore.base_url(env) %>/file.ext
     </code>
   </p>
 
