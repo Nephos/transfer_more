@@ -4,6 +4,7 @@ module TransferMore
   end
 
   def self.base_url(env)
-    "http#{Kemal.config.ssl ? 's' : nil}://#{(env.request.host_with_port || "localhost:3000")}"
+    scheme =
+    "http#{Kemal.config.ssl || SSL_ENABLED ? 's' : nil}://#{(env.request.host_with_port || "localhost:3000")}"
   end
 end
