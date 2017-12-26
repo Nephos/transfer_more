@@ -1,14 +1,14 @@
-NAME = transfer_more
+NAME := transfer_more
 PREFIX := /usr/local
 
 all: deps_opt build
 
 run:
-	crystal run src/$(NAME).cr
+	crystal run src/transfer_more.cr
 build:
-	crystal build src/$(NAME).cr --stats
+	crystal build src/transfer_more.cr --stats -o $(NAME)
 release:
-	crystal build src/$(NAME).cr --stats --release
+	crystal build src/transfer_more.cr --stats --release -o $(NAME)
 test:
 	crystal spec
 deps:
