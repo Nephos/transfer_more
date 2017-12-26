@@ -1,6 +1,6 @@
 # transfer_more
 
-[transfer.sh](https://transfer.sh/) clone in Crystal-lang based on kemalcr.
+Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
 
 ![screenshot](https://screenshots.firefoxusercontent.com/images/191ebbd9-a5ea-4fe9-ab8c-d896f59ea08c.png)
 
@@ -8,8 +8,9 @@
 - Files older than 7 days are destroyed (configurable).
 - Recognize shebangs, magic numbers, ...
 
-
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
+
+### From source
 
 ```sh
 make        # build the app / deps
@@ -17,6 +18,11 @@ make test   # run unit test
 make doc    # build the documentation
 ```
 
+### From AUR with yaourt
+
+```sh
+yaourt -S transfer-more
+```
 
 ## Usage
 
@@ -31,7 +37,6 @@ export TRANSFER_TIME_FORMAT="%y%m%d%H"
 ./transfer_more
 ```
 
-
 ```text
 ./transfer_more --help
     -b HOST, --bind HOST             Host to bind (defaults to 0.0.0.0)
@@ -44,19 +49,19 @@ export TRANSFER_TIME_FORMAT="%y%m%d%H"
 curl --progress-bar --upload-file file.mp4  http://domain/name.mp4
 ```
 
-
 ### Inside a docker
 
 If you are using docker-compose:
+
 ```sh
 docker-compose build && docker-compose up
 ```
 
 Else, you can do:
+
 ```sh
 docker build -t transfer_more . && docker run transfer_more
 ```
-
 
 ## Development
 
@@ -64,7 +69,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/Nephos/transfer_more/fork )
+1. Fork it ( <https://github.com/Nephos/transfer_more/fork> )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
