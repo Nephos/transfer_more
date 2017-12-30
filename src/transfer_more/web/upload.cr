@@ -2,7 +2,7 @@ require "random/secure"
 
 private def get_upload_infos(filename : String)
   file_name = filename.downcase
-  dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + Random::Secure.hex(TransferMore::SECURE_SIZE) + (ENV["TRANSFER_MORE_CHRISTMAS"] == "true" ? "/\u{1F384}" : "")
+  dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + Random::Secure.hex(TransferMore::SECURE_SIZE) + (ENV["TRANSFER_MORE_CHRISTMAS"]? == "true" ? "/\u{1F384}" : "")
   Dir.mkdir_p TransferMore.storage("files/#{dir}")
   visible_path = "#{dir}/#{file_name}"
   file_path = TransferMore.storage("files/#{visible_path}")
