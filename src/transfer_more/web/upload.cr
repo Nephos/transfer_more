@@ -1,8 +1,8 @@
-require "secure_random"
+require "random/secure"
 
 private def get_upload_infos(filename : String)
   file_name = filename.downcase
-  dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + SecureRandom.hex(TransferMore::SECURE_SIZE) + (ENV["TRANSFER_MORE_CHRISTMAS"] == "true" ? "/\u{1F384}" : "")
+  dir = Time.now.to_s(TransferMore::TIME_FORMAT) + "/" + Random::Secure.hex(TransferMore::SECURE_SIZE) + (ENV["TRANSFER_MORE_CHRISTMAS"] == "true" ? "/\u{1F384}" : "")
   Dir.mkdir_p TransferMore.storage("files/#{dir}")
   visible_path = "#{dir}/#{file_name}"
   file_path = TransferMore.storage("files/#{visible_path}")
@@ -21,7 +21,7 @@ put "/:file_name" do |env|
     upload(env, env.params.url["file_name"], env.request.body.as(IO)) + "\n"
   rescue err
     env.response.status_code = 500
-    "Error 500"
+    "Error 500 (#{err})"
   end
 end
 
@@ -32,7 +32,7 @@ post "/:file_name" do |env|
     upload(env, env.params.url["file_name"], http_file_infos.tmpfile) + "\n"
   rescue err
     env.response.status_code = 500
-    "Error 500"
+    "Error 500 (#{err})"
   end
 end
 
@@ -43,7 +43,7 @@ post "/" do |env|
     env.redirect upload(env, http_file_infos.filename.to_s, http_file_infos.tmpfile)
   rescue err
     env.response.status_code = 500
-    "Error 500"
+    "Error 500 (#{err})"
   end
 end
 
