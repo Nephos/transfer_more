@@ -2,10 +2,10 @@
 
 module TransferMore
   def self.purge(duration, verbose = true)
-    t_from = (Time.now - duration).epoch
+    t_from = Time.now - duration
     puts "[PURGE]  Start (#{t_from})" if verbose
     Dir.entries(storage "files").select do |dir|
-      t_current = Time.parse!("#{dir}00", TransferMore::TIME_FORMAT).epoch rescue next
+      t_current = Time.parse!("#{dir}00", TransferMore::TIME_FORMAT) rescue next
       r = t_current < t_from
     end.each do |dir|
       spawn do
