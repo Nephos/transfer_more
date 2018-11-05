@@ -10,7 +10,7 @@ Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
 
 ## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
 
-Compatible crystal 0.26.1
+Compatible crystal v0.27.0
 
 ### From source
 
