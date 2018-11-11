@@ -1,3 +1,4 @@
+version: 1.0
 shards:
   exception_page:
     github: crystal-loot/exception_page
@@ -5,7 +6,7 @@ shards:
 
   kemal:
     github: sdogruyol/kemal
-    commit: 4ccea8d6a1ba2b5977d6eb3456a0cae2ba3e667a
+    commit: 482b4a6e7dc3be7a0352fc6b8ee8108fe4cb1105
 
   kilt:
     github: jeromegn/kilt
@@ -14,3 +15,4 @@ shards:
   radix:
     github: luislavena/radix
     version: 0.3.8
+
