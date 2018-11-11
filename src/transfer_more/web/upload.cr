@@ -20,27 +20,43 @@ private def upload(env, name_of_upload, io_to_copy)
   end
 end
 
+private def errorNoFilenameprovided(env)
+  env.response.status_code = 400
+  return "Error 400: No filename provided"
+end
+
 private def parseAndUpload(env)
+  file_url = ""
+  filename = ""
   begin
     HTTP::FormData.parse(env.request) do |upload|
-      filename = upload.filename || env.params.url["filename"]
-      # Be sure to check if file.filename is not empty otherwise it'll raise a compile time error
-      if !filename.is_a?(String)
-        env.response.status_code = 400
-        "Error 400: No filename provided"
-      else
-        upload(env, filename, upload.body)
+      case upload.name
+      when "name"
+        filename = upload.body.gets_to_end
+      when "file"
+        filename = upload.filename || filename
+        # Be sure to check if file.filename is not empty otherwise it'll raise a compile time error
+        raise "No filename" if !filename || filename.empty?
+        file_url = upload(env, filename, upload.body)
       end
     end
   rescue err
+    puts err
     body = env.request.body
     if !body
       env.response.status_code = 400
-      "Error 400: No body"
-    else
-      filename = env.params.url["filename"]
-      upload(env, filename, body)
+      return "Error 400: No body"
     end
+    filename = env.params.url["filename"]?
+    puts "'filename'", filename
+    return errorNoFilenameprovided(env) if !filename || filename.empty?
+    file_url = upload(env, filename, body)
+  end
+
+  if env.request.headers["User-Agent"]?.to_s.match(/^curl/)
+    file_url
+  else
+    render "src/views/index.ecr"
   end
 end
 
@@ -70,5 +86,6 @@ get "/:part1/:part2/:file_name" do |env|
 end
 
 get "/" do |env|
+  file_url = ""
   render "src/views/index.ecr"
 end
