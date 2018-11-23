@@ -65,6 +65,20 @@ Else, you can do:
 docker build -t transfer_more . && docker run transfer_more
 ```
 
+### [ShareX](https://github.com/ShareX) template
+
+```json
+{
+  "Name": "Sceptique",
+  "DestinationType": "ImageUploader, TextUploader, FileUploader, URLShortener",
+  "RequestURL": "https://up.sceptique.eu/",
+  "FileFormName": "file",
+  "Headers": {
+    "User-Agent": "curl"
+  }
+}
+```
+
 ## Development
 
 TODO: Write development instructions here
