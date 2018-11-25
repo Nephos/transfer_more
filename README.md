@@ -2,7 +2,7 @@
 
 Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
 
-![screenshot](https://screenshots.firefoxusercontent.com/images/191ebbd9-a5ea-4fe9-ab8c-d896f59ea08c.png)
+![screenshot](https://raw.githubusercontent.com/Nephos/transfer_more/master/sample.png)
 
 - It's a simple online file sharing.
 - Files older than 7 days are destroyed (configurable).
