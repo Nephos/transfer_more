@@ -1,3 +1,5 @@
+**Migrated to <https://git.sceptique.eu/Sceptique/transfer_more>**
+
 # transfer_more
 
 Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
