@@ -34,7 +34,7 @@ yaourt -S transfer-more
 export TRANSFER_SSL_ENABLED=true    # true if the ssl is enabled, any other string is false
 export TRANSFER_BASE_STORAGE="/tmp" # where the files will be kept
 export TRANSFER_SECURE_SIZE=4       # how much characters to identify a file
-export TRANSFER_STORRAGE_DAYS=7     # how much time the files are kept
+export TRANSFER_STORAGE_DAYS=7      # how much time the files are kept
 export TRANSFER_TIME_FORMAT="%y%m%d%H"
 ./transfer_more
 ```
@@ -85,7 +85,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( <https://github.com/Nephos/transfer_more/fork> )
+1. Fork it ( <https://git.sceptique.eu/Sceptique/transfer_more/fork> )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -93,4 +93,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [Nephos](https://github.com/Nephos) Arthur Poulet - creator, maintainer
+- [Nephos](https://git.sceptique.eu/Sceptique) Arthur Poulet - creator, maintainer
