@@ -1,15 +1,10 @@
-#FROM manastech/crystal
-FROM greyltc/archlinux
-MAINTAINER Arthur Poulet <arthur.poulet@mailoo.org>
+FROM alpine:edge AS builder
+RUN apk add --no-cache crystal shards libc-dev yaml-dev libxml2-dev zlib-dev openssl-dev
 
-# Install crystal
-RUN pacman -Syu --noprogressbar --noconfirm crystal shards llvm35 llvm35-libs clang35 base-devel libxml2
+MAINTAINER Arthur Poulet <arthur.poulet@sceptique.eu>
 
 # Install shards
 WORKDIR /usr/local
-#RUN apt-get update
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl git libssl-dev
-#RUN curl -Lo bin/shards.gz https://github.com/crystal-lang/shards/releases/download/v0.6.3/shards-0.6.3_linux_x86_64.gz; gunzip bin/shards.gz; chmod 755 bin/shards
 
 # Add this directory to container as /app
 ADD . /transfer_more
@@ -19,7 +14,7 @@ WORKDIR /transfer_more
 RUN shards install
 
 # Build our app
-RUN crystal build --release src/transfer_more.cr
+RUN crystal build --release --warnings all src/transfer_more.cr
 
 # Run the tests
 RUN mkdir /tmp/files
