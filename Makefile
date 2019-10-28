@@ -6,9 +6,9 @@ all: deps_opt build
 run:
 	crystal run src/transfer_more.cr
 build:
-	crystal build src/transfer_more.cr --stats -o $(NAME)
+	crystal build src/transfer_more.cr --stats --warnings all -o $(NAME)
 release:
-	crystal build src/transfer_more.cr --stats --release -o $(NAME)
+	crystal build src/transfer_more.cr --stats --release --warnings all -o $(NAME)
 test:
 	crystal spec
 deps:
