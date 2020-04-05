@@ -2,7 +2,7 @@
 
 module TransferMore
   def self.purge(duration, verbose = true)
-    t_from = Time.now - duration
+    t_from = Time.local - duration
     puts "[PURGE]  Start (#{t_from})" if verbose
     Dir.entries(storage "files").select do |dir|
       t_current = Time.parse(dir, TransferMore::TIME_FORMAT, location: Time::Location.load_local) rescue next
