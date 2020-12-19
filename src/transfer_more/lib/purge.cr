@@ -23,9 +23,9 @@ module TransferMore
         puts "[REMOVE] #{subdir}/#{file}" if verbose
         File.delete("#{subdir}/#{file}")
       end
-      Dir.rmdir(subdir)
+      Dir.delete(subdir)
     end
-    Dir.rmdir(storage "files/#{dir}")
+    Dir.delete(storage "files/#{dir}")
   end
 end
 
