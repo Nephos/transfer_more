@@ -38,6 +38,7 @@ export TRANSFER_BASE_STORAGE="/tmp" # where the files will be kept
 export TRANSFER_SECURE_SIZE=4       # how much characters to identify a file
 export TRANSFER_STORAGE_DAYS=7      # how much time the files are kept
 export TRANSFER_TIME_FORMAT="%y%m%d%H"
+export TRANSFER_HOST_PORT="localhost:3000" # in pinciple it is auto solved using the http headers, optional
 ./transfer_more
 ```
 
