@@ -1,4 +1,4 @@
-**Migrated to <https://git.sceptique.eu/Sceptique/transfer_more>**
+**Upstream on <https://git.sceptique.eu/Sceptique/transfer_more>**
 
 # transfer_more
 
@@ -83,15 +83,21 @@ docker build -t transfer_more . && docker run transfer_more
 
 ## Development
 
-TODO: Write development instructions here
+For now I don't have much plan expanding the feature of it, as it fulfills all my needs.
+
+I will keep updating with each crystal new release.
 
 ## Contributing
 
-1. Fork it ( <https://git.sceptique.eu/Sceptique/transfer_more/fork> )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
+Feel free to propose new feature anyway, we can just put them behind feature flag if it's overkill.
+
+Review your own coding style as possible.
+
+Do not try to include external CI in the upstream, I don't want big centralized service of the GAFAM as possible.
+
+You can either propose a patch in an issue or open a merge request on <https://git.sceptique.eu/Sceptique/transfer_more/fork>.
+
+You can propose it on github if you want, but git.sceptique.eu accept github OAuth so it's very quick to setup and it's my prefered way.
 
 ## Contributors
 
