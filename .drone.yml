@@ -2,9 +2,11 @@ kind: pipeline
 name: default
 steps:
 - name: test
-  image: crystallang/crystal:latest
+  image: crystallang/crystal:latest-alpine
   environment:
   commands:
+  - apk --no-cache add curl
+  - mkdir -p /tmp/files
   - make deps
   - make test
   - make build
