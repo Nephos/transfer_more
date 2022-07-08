@@ -10,9 +10,9 @@ Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
 - Files older than 7 days are destroyed (configurable).
 - Recognize shebangs, magic numbers, ...
 
-## Installation [![travis](https://travis-ci.org/Nephos/transfer_more.svg)](https://travis-ci.org/Nephos/transfer_more)
+## Installation [![Build Status](https://drone.sceptique.eu/api/badges/Sceptique/transfer_more/status.svg)](https://drone.sceptique.eu/Sceptique/transfer_more)
 
-Compatible crystal v0.35.1
+Compatible crystal v1.4.1
 
 ### From source
 
@@ -102,4 +102,4 @@ You can propose it on github if you want, but git.sceptique.eu accept github OAu
 
 ## Contributors
 
-- [Nephos](https://git.sceptique.eu/Sceptique) Arthur Poulet - creator, maintainer
+- [Sceptique](https://git.sceptique.eu/Sceptique) Arthur Poulet - creator, maintainer
