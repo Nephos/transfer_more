@@ -20,9 +20,8 @@ deps_opt:
 doc:
 	crystal docs
 install:
-	mkdir -p $(PREFIX)/bin
-	cp $(NAME) $(PREFIX)/bin/$(NAME)
-uninstall:
-	rm $(PREFIX)/bin/$(NAME)
+	mkdir -p $(PREFIX)/transfer-more
+	cp $(NAME) $(PREFIX)/transfer-more/
+	cp -r public $(PREFIX)/transfer-more/
 
 .PHONY: all run build release test deps deps_update doc install uninstall
