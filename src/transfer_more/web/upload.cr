@@ -13,7 +13,7 @@ private def upload(env, name_of_upload, io_to_copy)
   begin
     file_name, dir, visible_path, file_path = get_upload_infos name_of_upload
     File.open(file_path, "w") { |f| IO.copy(io_to_copy, f) }
-    TransferMore.base_url(env) + "/" + visible_path
+    TransferMore.base_url(env) + "/f/" + visible_path
   rescue err
     env.response.status_code = 500
     "Error 500: #{err}"
@@ -73,7 +73,7 @@ post "/" do |env|
   parseAndUpload(env)
 end
 
-get "/:part1/:part2/:file_name" do |env|
+get "/f/:part1/:part2/:file_name" do |env|
   file_name = env.params.url["file_name"].to_s.downcase
   path = TransferMore.storage("files") + "/" + env.params.url["part1"] + "/" + env.params.url["part2"] + "/" + file_name
   begin
