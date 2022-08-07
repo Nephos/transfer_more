@@ -22,10 +22,10 @@ make test   # run unit test
 make doc    # build the documentation
 ```
 
-### From AUR with yaourt
+### From AUR with yay (or yaourt etc.)
 
 ```sh
-yaourt -S transfer-more
+yay -S transfer-more
 ```
 
 ## Usage
