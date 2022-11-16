@@ -9,4 +9,4 @@ license: GPL-3.0
 dependencies:
   kemal:
       github: sdogruyol/kemal
-      branch: master
+      version: ~> 1.3
