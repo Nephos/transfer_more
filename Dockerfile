@@ -1,25 +1,29 @@
 FROM alpine:edge AS builder
-RUN apk add --no-cache crystal shards libc-dev yaml-dev libxml2-dev zlib-dev openssl-dev
-
-MAINTAINER Arthur Poulet <arthur.poulet@sceptique.eu>
-
-# Install shards
-WORKDIR /usr/local
 
 # Add this directory to container as /app
-ADD . /transfer_more
-WORKDIR /transfer_more
+ADD . /build
+WORKDIR /build
 
 # Install dependencies
+RUN apk add --no-cache \
+        crystal shards libc-dev yaml-dev libxml2-dev zlib-dev openssl-dev curl
+
+# Install shards
 RUN shards install
 
 # Build our app
 RUN crystal build --release --warnings all src/transfer_more.cr
 
 # Run the tests
-RUN mkdir /tmp/files
-#RUN crystal spec
+RUN mkdir /tmp/files && crystal spec
 
-EXPOSE 3000
+FROM alpine:edge
+MAINTAINER Arthur Poulet <arthur.poulet@sceptique.eu>
 
-ENTRYPOINT ./transfer_more --port 3000
+RUN apk add --no-cache libgcc libevent libgc++ libpcrecpp
+
+WORKDIR /app
+ADD ./public /app/public
+COPY --from=builder /build/transfer_more ./transfer_more
+
+ENTRYPOINT ["./transfer_more"]

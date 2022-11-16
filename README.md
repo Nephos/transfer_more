@@ -54,18 +54,16 @@ export TRANSFER_HOST_PORT="localhost:3000" # in pinciple it is auto solved using
 curl --progress-bar --upload-file file.mp4  http://domain/name.mp4
 ```
 
-### Inside a docker
+### Inside a Docker container
 
-If you are using docker-compose:
+```sh
+docker build -t transfer_more . && docker run -p 3000:3000 transfer_more
+```
+
+Or with docker-compose:
 
 ```sh
 docker-compose build && docker-compose up
-```
-
-Else, you can do:
-
-```sh
-docker build -t transfer_more . && docker run transfer_more
 ```
 
 ### [ShareX](https://github.com/ShareX) template
