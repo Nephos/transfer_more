@@ -13,6 +13,28 @@
     body { text-align:center;font-family:helvetica,arial;font-size:22px;color:#888;margin:20px;}
     a { color:#66b;text-decoration:none; }
     #c {margin:0 auto;width:500px;text-align:left}
+    .dropzone {
+      font-weight: bold;
+      text-align: center;
+      padding: 1em 0;
+      margin: 1em 0;
+      margin-left: 30%;
+      color: #555;
+      border: 2px dashed #555;
+      border-radius: 6px;
+      cursor: default;
+      height: 400px;
+      width: 40%;
+      background-color: rgba(250, 166, 180, 0.5);
+      background-repeat: no-repeat;
+      background-position: bottom;
+    }
+    #dropzone.hover {
+      color: #eaa
+      border-color: #eaa;
+      border-style: solid;
+      box-shadow: inset 0 4px 4px #888;
+    }
   </style>
 </head>
 
@@ -33,15 +55,12 @@
 
   <form method="POST" action="/" enctype="multipart/form-data">
     <div class="form-group">
-      <div class="col-lg-10">
+      <div class="dropzone-bg">
         <input name="commit" value="Upload" class="btn btn-primary" type="submit">
-        <input class="btn btn-default" name="file" id="file" type="file" required>
+        <input class="form-control dropzone" name="file" id="file" type="file" required>Drop files</input>
       </div>
     </div>
   </form>
-  <!-- <img src="/images/kemal.png"> -->
-  <img src="/images/kemal.svg">
-  <!-- <img src="https://kemalcr.com/img/kemal.png"> -->
 
   <footer style="position:fixed;bottom:0px;padding:60px;">
     <span style="position:fixed;left:10%">
