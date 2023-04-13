@@ -12,7 +12,7 @@ Fast and lite file upload server ([transfer.sh](https://transfer.sh/) clone).
 
 ## Installation [![Build Status](https://drone.sceptique.eu/api/badges/Sceptique/transfer_more/status.svg)](https://drone.sceptique.eu/Sceptique/transfer_more)
 
-Compatible crystal v1.6.0
+Compatible crystal v1.7
 
 ### From source
 
