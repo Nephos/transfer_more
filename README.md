@@ -28,6 +28,64 @@ make doc    # build the documentation
 yay -S transfer-more
 ```
 
+### As a systemd service
+
+    [Unit]
+    Description=Tranfer more file sharing
+    Documentation=https://wiki.archlinux.org/index.php/Transfer-more
+
+    [Service]
+    ExecStart=/usr/share/transfer-more/transfer-more --port 10003 --bind 127.0.0.1
+    Restart=on-failure
+    RestartSec=5
+    Environment="TRANSFER_SSL_ENABLED=true"
+    WorkingDirectory=/usr/share/transfer-more/
+
+    # Hardening
+    MemoryDenyWriteExecute=true
+    SystemCallArchitectures=native
+    CapabilityBoundingSet=
+    NoNewPrivileges=true
+    RemoveIPC=true
+    LockPersonality=true
+
+    ProtectControlGroups=true
+    ProtectKernelTunables=true
+    ProtectKernelModules=true
+    ProtectKernelLogs=true
+    ProtectClock=true
+    ProtectHostname=true
+    ProtectProc=noaccess
+
+    RestrictRealtime=true
+    RestrictSUIDSGID=true
+    RestrictNamespaces=true
+    RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+    ProtectSystem=full
+    ProtectHome=true
+    PrivateDevices=true
+    PrivateTmp=true
+
+    [Install]
+    WantedBy=default.target
+
+### Behind a nginx proxy
+
+You should configure your nginx with `/etc/nginx/servers-enabled/transfer-more.conf`:
+
+    server {
+      listen 443 ssl;
+      server_name your.sub.domain;
+      client_max_body_size 1G;
+      proxy_set_header Host              $host;
+      proxy_set_header X-Real-IP         $remote_addr;
+      proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+      location / {
+          proxy_pass http://localhost:3000;
+      }
+    }
+
 ## Usage
 
 ### Run the Server
@@ -39,6 +97,8 @@ export TRANSFER_SECURE_SIZE=4       # how much characters to identify a file
 export TRANSFER_STORAGE_DAYS=7      # how much time the files are kept
 export TRANSFER_TIME_FORMAT="%y%m%d%H"
 export TRANSFER_HOST_PORT="localhost:3000" # in pinciple it is auto solved using the http headers, optional
+export TRANSFER_MORE_FOOTER="Something <strong>important</strong> on the bottom" # replace the default footer
+export TRANSFER_MORE_TITLE="MyName upload"                                       # replace the default title
 ./transfer_more
 ```
 
