@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>File upload with kemal</title>
+  <title><%= ENV.fetch("TRANSFER_MORE_TITLE", "File upload") %></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" /> -->
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-  <h2>File upload with kemal</h2>
+  <h2><%= ENV.fetch("TRANSFER_MORE_TITLE", "File upload") %></h2>
   <% if !file_url.empty? %>
     <div class="alert alert-success">
       <p>Upload url: <a href="<%= file_url %>"><%= file_url %></a></p>
@@ -64,10 +64,10 @@
 
   <footer style="position:fixed;bottom:0px;padding:60px;">
     <span style="position:fixed;left:10%">
-      built by <a href="https://github.com/Nephos/">Nephos</a> with <a href="http://kemalcr.com/">kemal</a>
+      <%= ENV.fetch("TRANSFER_MORE_FOOTER", "built by <a href=\"https://git.sceptique.eu/Sceptique\">Sceptique</a>, powered with <a href=\"http://kemalcr.com/\">kemal</a>") %>
     </span>
     <span style="position:fixed;right:10%">
-      <a href="https://github.com/Nephos/transfer_more">Fork me</a>
+      <a href="https://git.sceptique.eu/Sceptique/transfer_more">Fork or patch me</a>
     </span>
   </footer>
 </body>
