@@ -20,7 +20,7 @@ RUN mkdir /tmp/files && crystal spec
 FROM alpine:edge
 MAINTAINER Arthur Poulet <arthur.poulet@sceptique.eu>
 
-RUN apk add --no-cache libgcc libevent libgc++ libpcrecpp
+RUN apk add --no-cache libgcc libevent libgc++ pcre2
 
 WORKDIR /app
 ADD ./public /app/public
