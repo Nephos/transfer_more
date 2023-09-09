@@ -11,21 +11,33 @@
   <!-- <script src="/js/dropzone.js"></script> -->
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
   <style type="text/css">
-    body { text-align:center;font-family:helvetica,arial;font-size:22px;color:#888;margin:20px;}
-    a { color:#66b;text-decoration:none; }
-    #c {margin:0 auto;width:500px;text-align:left}
+    body {
+      text-align: center;
+      font-family: Helvetica, Arial;
+      font-size: 22px;
+      color: #888;
+      margin-top: 20px;
+    }
+    a {
+      color: #66b;
+      text-decoration: none;
+    }
+    #c {
+      margin: 0 auto;
+      width: 500px;
+      text-align: left;
+    }
     .dropzone {
       font-weight: bold;
       text-align: center;
       padding: 1em 0;
-      margin: 1em 0;
-      margin-left: 30%;
+      margin: 1em auto;
       color: #555;
       border: 2px dashed #555;
       border-radius: 6px;
       cursor: default;
       height: 400px;
-      width: 40%;
+      max-width: 400px;
       background-color: rgba(250, 166, 180, 0.5);
       background-repeat: no-repeat;
       background-position: bottom;
@@ -35,6 +47,12 @@
       border-color: #eaa;
       border-style: solid;
       box-shadow: inset 0 4px 4px #888;
+    }
+    footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
     }
   </style>
 </head>
@@ -63,11 +81,11 @@
     </div>
   </form>
 
-  <footer style="position:fixed;bottom:0px;padding:60px;">
-    <span style="position:fixed;left:10%">
+  <footer>
+    <span>
       <%= ENV.fetch("TRANSFER_MORE_FOOTER", "built by <a href=\"https://git.sceptique.eu/Sceptique\">Sceptique</a>, powered with <a href=\"http://kemalcr.com/\">kemal</a>") %>
     </span>
-    <span style="position:fixed;right:10%">
+    <span>
       <a href="https://git.sceptique.eu/Sceptique/transfer_more">Fork or patch me</a>
     </span>
   </footer>
