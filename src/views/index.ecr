@@ -61,7 +61,7 @@
   <h2><%= ENV.fetch("TRANSFER_MORE_TITLE", "File upload") %></h2>
   <% if !file_url.empty? %>
     <div class="alert alert-success">
-      <p>Upload url: <a href="<%= file_url %>"><%= file_url %></a></p>
+      <p>Upload url: <a href="<%= HTML.escape(file_url) %>"><%= HTML.escape(file_url) %></a></p>
     </div>
   <% end %>
 
