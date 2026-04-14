@@ -36,6 +36,6 @@ spawn do
     rescue err
       STDERR.puts "Purge: #{err}"
     end
-    sleep(60)
+    sleep(60.seconds)
   end
 end
