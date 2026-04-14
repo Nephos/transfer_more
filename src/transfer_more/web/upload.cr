@@ -1,7 +1,7 @@
 require "random/secure"
 
 private def get_upload_infos(filename : String)
-  file_name = filename.downcase
+  file_name = File.basename(filename).downcase
   dir = Time.local.to_s(TransferMore::TIME_FORMAT) + "/" + Random::Secure.hex(TransferMore::SECURE_SIZE) + (ENV["TRANSFER_MORE_CHRISTMAS"]? == "true" ? "/\u{1F384}" : "")
   Dir.mkdir_p TransferMore.storage("files/#{dir}")
   visible_path = "#{dir}/#{file_name}"
@@ -74,8 +74,15 @@ post "/" do |env|
 end
 
 get "/f/:part1/:part2/:file_name" do |env|
-  file_name = env.params.url["file_name"].to_s.downcase
-  path = TransferMore.storage("files") + "/" + env.params.url["part1"] + "/" + env.params.url["part2"] + "/" + file_name
+  part1 = File.basename(env.params.url["part1"])
+  part2 = File.basename(env.params.url["part2"])
+  file_name = File.basename(env.params.url["file_name"].to_s.downcase)
+  path = File.expand_path(TransferMore.storage("files") + "/" + part1 + "/" + part2 + "/" + file_name)
+  storage_base = File.expand_path(TransferMore.storage("files"))
+  unless path.starts_with?(storage_base + "/")
+    env.response.status_code = 403
+    next "Forbidden"
+  end
   begin
     content_type = TransferMore::MimeSearch.new(path).get_content_type
     env.response.content_type = content_type

@@ -1,3 +1,3 @@
 module TransferMore
-  VERSION = "0.5"
+  VERSION = "0.5.10"
 end
