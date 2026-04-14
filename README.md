@@ -77,7 +77,7 @@ You should configure your nginx with `/etc/nginx/servers-enabled/transfer-more.c
     server {
       listen 443 ssl;
       server_name your.sub.domain;
-      client_max_body_size 1G;
+      client_max_body_size 1G; # upload size limit, adjust as needed
       proxy_set_header Host              $host;
       proxy_set_header X-Real-IP         $remote_addr;
       proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;

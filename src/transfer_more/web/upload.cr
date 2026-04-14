@@ -15,8 +15,9 @@ private def upload(env, name_of_upload, io_to_copy)
     File.open(file_path, "w") { |f| IO.copy(io_to_copy, f) }
     TransferMore.base_url(env) + "/f/" + visible_path
   rescue err
+    STDERR.puts "Upload error: #{err}"
     env.response.status_code = 500
-    "Error 500: #{err}"
+    "Error 500: Internal server error"
   end
 end
 
